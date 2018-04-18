@@ -1,0 +1,69 @@
+{
+    "settings": {
+        "debug":false,
+        "showPopupBeforeAdd":true,
+        "showPopupAfterAdd":true,
+        "showPopupBeforeRemove":true,
+        "showPopupBeforeClean":true,
+        "changeButtonText":true,
+        "cart_doc_id": 23
+    },
+
+    "classes": {  
+        "itemClass":"es-item",
+        "buyBtnClass":"es-buyBtn",
+        "delBtnClass":"es-delete",
+        "itemPriceClass":"es-itemPrice",
+        "fullCartClass":"es-fullCart",
+        "miniCartClass":"es-miniCart",
+        "imageClass": "es-image",
+        "quantityFieldName":"es-cnt",
+        "addedClass":"es-added",
+        "totalSumClass":"es-totalSum",
+        "totalCntClass":"es-totalCnt",
+        "btnMinusClass":"es-cntMinus",
+        "btnPlusClass":"es-cntPlus",
+        "productPluralClass": "es-plural"
+    },
+
+    "buttonText": {
+        "buttonTextDefault":"[(__add_to_cart_btn_text)]",
+        "buttonTextAfterAdd":"[(__added_btn_text)]"
+    },
+
+    "templates": {
+        "emptyMiniCartTpl":"",
+        "fillMiniCartTpl":"",
+        "fullCartRowTpl":"",
+        "addedPopup":"",
+        "cntPopup":"",
+        "delPopup":"",
+        "cleanPopup":""
+    },
+
+    "lang": "[(__lang)]",
+    "currency": "[(__currency)]",
+
+    "currencies": {
+        "RUB": { "rate":1, "suffix": " [(__RUB.sign)]", "prefix":"", "accuracy": 0, "decimal": ".", "delimiter": ""},
+        "USD": { "rate":58, "suffix": "", "prefix": "[(__USD.sign)]", "accuracy": 2, "decimal": ",", "delimiter": "."},
+        "EUR": { "rate":62, "suffix": "", "prefix": "[(__EUR.sign)]", "accuracy": 2, "decimal": ",", "delimiter": "."},
+        "UAH": { "rate":2.2, "suffix": " [(__UAH.sign)]", "prefix":"", "accuracy": 2, "decimal": ",", "delimiter": "."}
+    },
+
+    "plural": {
+        "product": ["[(__plural.Product1)]","[(__plural.Product2)]","[(__plural.Product5)]"],
+        "RUB": ["[(__plural.RUB1)]","[(__plural.RUB2)]","[(__plural.RUB5)]"],
+        "USD": ["[(__plural.USD1)]","[(__plural.USD2)]","[(__plural.USD5)]"],
+        "UAH": ["[(__plural.UAH1)]","[(__plural.UAH2)]","[(__plural.UAH5)]"],
+        "EUR": ["[(__plural.EUR1)]","[(__plural.EUR2)]","[(__plural.EUR5)]"]
+    },
+
+    "generalTV": {
+        "price":    "price",
+        "currency": "currency",
+        "unit":     "es-unit",
+        "step":     "step",
+        "title":    "pagetitle_[(__lang)]"
+    }
+}
