@@ -73,13 +73,14 @@ class evoShop
 	    public function getConfig() {
 		    $config_file = MODX_BASE_PATH . 'assets/modules/evoShop/config.json';
 		    $configJson = file_get_contents($config_file);
-   
+   			
    			$phs = [];
    			$phs = $this->blang;
    			$phs['lang'] = $this->lang;
    			$phs['currency'] = $this->currency;
 
 		    $configJson = $this->modx->parseText($configJson, $phs, '[(__', ')]');
+		    $configJson = str_replace(['[(__',')]'], ['NoLang: [', ']'], $configJson);
 
 		    $config = json_decode($configJson, true);
 		    $config['cart_url'] = $this->modx->getConfig('site_url').$this->lang.$this->modx->makeUrl($config['settings']['cart_doc_id']);
@@ -102,8 +103,8 @@ class evoShop
 	    	$chunkText = DLTemplate::getInstance($this->modx)->getChunk($chunkName);
 
 	    	$chunkText = $this->modx->parseText($chunkText, $config, '[+', '+]');
-
-	    	return str_replace(['[+','+]'], ['{+', '+}'], $this->modx->parseText($chunkText, $this->blang, '[(__', ')]'));
+	    	$template = str_replace(['[+','+]'], ['{+', '+}'], $this->modx->parseText($chunkText, $this->blang, '[(__', ')]'));
+	    	return str_replace(['[(__',')]'], ['NoLang: [', ']'], $template);
 	    }
 
 
@@ -264,7 +265,7 @@ class evoShop
 				}
 				return $ret;
 			} else {
-				return false;
+				return [];
 			}	
 		}
 
