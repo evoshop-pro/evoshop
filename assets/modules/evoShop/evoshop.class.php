@@ -1,8 +1,6 @@
 <?php
-use Helpers\Lexicon;
+
 include_once(MODX_BASE_PATH . "assets/lib/MODxAPI/modResource.php");
-require_once(MODX_BASE_PATH . "assets/snippets/DocLister/lib/DLTemplate.class.php");
-require_once(MODX_BASE_PATH . "assets/snippets/FormLister/lib/Lexicon.php");
 
 evoShop::setLang();
 evoShop::setCurrency();
@@ -82,7 +80,24 @@ class evoShop
 		    $configJson = $this->modx->parseText($configJson, $phs, '[(__', ')]');
 		    $configJson = str_replace(['[(__',')]'], ['NoLang: [', ']'], $configJson);
 
-		    $config = json_decode($configJson, true);
+		    preg_match_all("/\[session\|(.*)\]/", $configJson, $configJson_match);
+		    if(count($configJson_match[0])>0) {
+		    	foreach($configJson_match[1] as $match) {
+		    		$match_array = explode('|',$match);
+		    		if(count($match_array)>0) {
+		    			$sess = '';
+		    			foreach($match_array as $key) {
+		    				$sess = $sess ?: $_SESSION;
+		    				$sess = $sess[$key];
+		    			}
+		    		}
+		    		if($sess) $configJson_match[3][] = $sess;
+		    	}
+		    	$configJson = str_replace($configJson_match[0], $configJson_match[3], $configJson);
+		    }
+
+		    $config = json_decode($configJson, true);  
+
 		    $config['cart_url'] = $this->modx->getConfig('site_url').$this->lang.$this->modx->makeUrl($config['settings']['cart_doc_id']);
 
 		    foreach($config['templates'] as $key=>$val) {
@@ -94,13 +109,15 @@ class evoShop
 		//Шаблонизация
 	    public function getTemplate($tplName, $chunkName, $config) {
 	    	if(!$chunkName) {
-	    		DLTemplate::getInstance($this->modx)->setTemplatePath('assets/modules/evoShop/tpl/');
-				DLTemplate::getInstance($this->modx)->setTemplateExtension('tpl');		
-	    		$chunkName = '@FILE:'.$tplName;
+	    		$chunkName = MODX_BASE_PATH . 'assets/modules/evoShop/tpl/'.$tplName.'.tpl';	
 	    	}
 
+	    	if(preg_match("/^@FILE:/", $chunkName)) {
+	    		$path = str_replace('@FILE:','',$chunkName);
+	    		$chunkName = MODX_BASE_PATH . $path;
+	    	}
 
-	    	$chunkText = DLTemplate::getInstance($this->modx)->getChunk($chunkName);
+	    	$chunkText = file_get_contents($chunkName);
 
 	    	$chunkText = $this->modx->parseText($chunkText, $config, '[+', '+]');
 	    	$template = str_replace(['[+','+]'], ['{+', '+}'], $this->modx->parseText($chunkText, $this->blang, '[(__', ')]'));

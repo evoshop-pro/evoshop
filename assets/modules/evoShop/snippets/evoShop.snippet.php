@@ -11,7 +11,7 @@ $settings['update'] = $_SESSION[$evoShop->cart->sessionKey] ? false : true;
 
 $settings_json = json_encode($settings, JSON_UNESCAPED_UNICODE);
 $modx->regClientScript('<script type="text/javascript">var evoShopConfig = '.$settings_json.';</script><script src="/assets/modules/evoShop/js/evoShop.js?v=1.25"></script>');
-
+$modx->regClientCSS('<link rel="stylesheet" type="text/css" href="/assets/modules/evoShop/js/helpers.css">');
 
 $cart_arr = $evoShop->cart->render();
 //var_dump($cart_arr);
@@ -44,3 +44,4 @@ if(count($cart_arr['items'])> 0) {
 
 
 $modx->toPlaceholders($phs);
+return;

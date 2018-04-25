@@ -1,5 +1,4 @@
 <?php
-use Helpers\Lexicon;
 include_once(dirname(__FILE__) . "/site_content.php");
 require_once MODX_BASE_PATH . 'assets/modules/evoShop/evoshop.class.php';
 

@@ -58,7 +58,7 @@
 
 
                     if(evoShopConfig.settings.showPopupAfterAdd) {
-                        evoShop.generateHelper(evoShopConfig.templates.addedPopup, true);
+                        evoShop.generateHelper(evoShopConfig.templates.addedPopup, function(){});
                         def.resolve(items);
                     }
 
@@ -491,20 +491,20 @@ evoShop.actions = {
 
         stepBefore = function(){
             $.when(before(params))
-            .done(stepSend)
-            .fail(function(mes){alert(mes);evoShop.actions.update;});
+            .then(stepSend)
+            .catch(function(mes){alert(mes);evoShop.actions.update;});
         }
 
         stepSend = function(){
             $.when(send(name, params))
-            .done(stepAfter)
-            .fail(function(mes){alert(mes);evoShop.actions.update;});
+            .then(stepAfter)
+            .catch(function(mes){alert(mes);evoShop.actions.update;});
         }
 
         stepAfter = function(){
             $.when(after(params))
-            .done(evoShop.actions.update)
-            .fail(function(mes){alert(mes);});
+            .then(evoShop.actions.update)
+            .catch(function(mes){alert(mes);});
         }
 
         stepBefore();
@@ -653,6 +653,8 @@ evoShop.actions = {
                     };
 
                     return evoShop.generateHelper(evoShopConfig.templates.delPopup, clickFn);
+                } else {
+                    evoShop.actions.remove(hash);
                 }
             } else {
                 evoShop.debug('Отсутствует data-hash у кнопки удаления');
@@ -732,7 +734,7 @@ evoShop.actions = {
 
 
 //Пользовательские функции
-evoShop.beforeUpdate = function(callback) {
+/*evoShop.beforeUpdate = function(callback) {
     callback();
 }
 
@@ -768,7 +770,7 @@ evoShop.beforeRemove = function(element, item, callback) {
     $(element).fadeOut(300, function(){
         callback();
     });
-}
+}*/
 
 /*evoShop.priceFormat = function(price) {
     return price;

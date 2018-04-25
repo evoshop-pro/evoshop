@@ -1,0 +1,2 @@
+.es-popup{-webkit-transition:opacity .3s;-o-transition:opacity .3s;transition:opacity .3s;z-index:-99999;opacity:0;top:50%;left:50%;width:300px;height:auto;position:fixed;margin-left:-150px;margin-top:-100px;background:#fff;padding:25px;border:2px solid #017a7a;text-align:center;-webkit-box-shadow:0 10px 60px -10px #000;box-shadow:0 10px 60px -10px #000}
+.es-popup.show{opacity:1;z-index:999}input{padding:7px;border:1px solid #005c5c;-webkit-border-radius:5px;border-radius:5px}
