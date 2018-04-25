@@ -64,6 +64,7 @@
         "currency": "currency",
         "unit":     "es-unit",
         "step":     "step",
+        "articul":  "articul",
         "title":    "pagetitle_[(__lang)]"
     }
 }

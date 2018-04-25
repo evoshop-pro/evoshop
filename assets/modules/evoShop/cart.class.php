@@ -96,6 +96,7 @@ class Cart
 							$render['ids'][] = $item['id'];
 						}
 						$product = $this->es->getDoc($item['id']);
+						$render['items'][$hash]['articul'] = $this->es->sanitize($product->get($this->config['generalTV']['articul'])) ?: 'articul_'.$item['id'];
 						//$render['items'][$hash]['categoryName'] = $this->es->getDoc($render['items'][$hash]['category'])->get('pagetitle');	
 						$render['items'][$hash]['name'] = $this->es->sanitize($product->get($this->config['generalTV']['title'])) ?: $this->es->sanitize($product->get('pagetitle'));	
 						$render['items'][$hash]['url'] = $this->modx->makeUrl($item['id']);

@@ -734,7 +734,7 @@ evoShop.actions = {
 
 
 //Пользовательские функции
-/*evoShop.beforeUpdate = function(callback) {
+evoShop.beforeUpdate = function(callback) {
     callback();
 }
 
@@ -770,7 +770,7 @@ evoShop.beforeRemove = function(element, item, callback) {
     $(element).fadeOut(300, function(){
         callback();
     });
-}*/
+}
 
 /*evoShop.priceFormat = function(price) {
     return price;
