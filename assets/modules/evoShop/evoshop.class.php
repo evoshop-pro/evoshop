@@ -54,11 +54,7 @@ class evoShop
 	    //Установка языка и валюты
 	    public function setLang() {
 			$_SESSION['lang'] = $_REQUEST['lang'] ? mb_strtolower($_REQUEST['lang']) : self::$defaultLang;
-			
-			$langDir = MODX_BASE_PATH . 'assets/modules/evoShop/lang/'.$_SESSION['lang'];
-			if(!is_dir($langDir)) {
-				$_SESSION['lang'] = self::$defaultLang;
-			}
+			//Тут не мешало бы добавить проверку на существование языка
 			self::$lang = $_SESSION['lang'];
 		}
 
