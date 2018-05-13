@@ -607,7 +607,7 @@ evoShop.actions = {
 
             //Выбираем ВСЕ дочерние элементы .es-item
             var params = evoShop.getParams(itemContainer) || {};
-            var img = itemContainer.find('.'+evoShopConfig.classes.imageClass).data('fullimg') || '';
+            var img = itemContainer.find('.'+evoShopConfig.classes.imageClass).attr('src') || '';
 
             items = [{'id':id, 'quantity':1, 'img':img, 'options':params}];
 
