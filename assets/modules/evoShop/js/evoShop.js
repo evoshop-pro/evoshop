@@ -579,7 +579,7 @@ evoShop.actions = {
 ////////////////////////////////// DEFAULT ////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
     evoShop.default = function(){
-            $.each(evoShop.getLS().ids, function (i, id) {
+            $.each(JSON.parse(evoShop.getLS().ids), function (i, id) {
                     //Изменяем текст кнопки у добавленных товаров
                     if(evoShopConfig.settings.changeButtonText) {
                         $('.'+evoShopConfig.classes.itemClass+'-'+id).find('.'+evoShopConfig.classes.buyBtnClass).text(evoShopConfig.buttonText.buttonTextAfterAdd);
